@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import styles from "./customerchat.module.css";
 import { BsThreeDots, BsLightningChargeFill, BsEmojiLaughingFill } from "react-icons/bs";
 import { FaRegMoon, FaBars } from "react-icons/fa";
@@ -8,13 +8,13 @@ import { IoIosArrowDown } from "react-icons/io";
 const Customerchat = ({
   activeUser,
   composerText,
+  setComposerText,
   isShifted,
   setIsShifted,
   setIsSidebarVisible,
   setIsSidebar2Visible,
 }) => {
-  const textareaRef = useRef(null);
-  const [textValue, setTextValue] = useState("");
+
 
   const [messages, setMessages] = useState([
     {
@@ -31,21 +31,18 @@ const Customerchat = ({
   ]);
 
   const handleSend = () => {
-    const inputValue = textareaRef.current.value;
-  
+    if (!composerText.trim()) return;
     setMessages((prev) => [
       ...prev,
       {
         type: "agent",
-        text: inputValue.trim(), 
+        text: composerText.trim(),
         time: "Now",
       },
     ]);
-  
-    textareaRef.current.value = ""; 
-    setTextValue("");
+    setComposerText("");
   };
-  
+
   const handleSidebarToggle = () => {
     if (window.innerWidth <= 1000) {
       setIsSidebarVisible(true);
@@ -137,11 +134,10 @@ const Customerchat = ({
         </div>
 
         <textarea
-          ref={textareaRef}
           className={styles["chat-textarea"]}
           placeholder="Use ⌘K for shortcuts"
           value={composerText}
-          onChange={(e) => setTextValue(e.target.value)}
+          onChange={(e) => setComposerText(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
@@ -164,7 +160,7 @@ const Customerchat = ({
           </div>
 
           <button
-            className={`${styles["send-btn"]} ${textValue ? styles["send-btn-active"] : ""}`}
+            className={`${styles["send-btn"]} ${composerText.trim() ? styles["send-btn-active"] : ""}`}
             onClick={handleSend}
           >
             <span>Send</span>
