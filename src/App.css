@@ -2,13 +2,17 @@
     margin:0;
     padding: 0;
     box-sizing: border-box;
+  
+}
+body{
+    background-color: rgb(114, 121, 253);
 }
 .cover{
     height:94vh;
     width:97vw;
-    background-color: rgb(114, 121, 253);
+    background-color: rgb(159, 164, 255);
     border-radius: 10px;
     margin: 0.5rem 1rem 1rem 1rem;
     display: flex;
-    box-shadow: 0 0  10px rgb(141, 141, 255),0 0 10px rgb(141, 141, 255);
+    box-shadow: 1px 1px  30px rgb(71, 71, 255),0 0 30px rgb(62, 62, 255);
 }
