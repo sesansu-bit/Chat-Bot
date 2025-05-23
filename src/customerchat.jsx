@@ -8,13 +8,13 @@ import { IoIosArrowDown } from "react-icons/io";
 const Customerchat = ({
   activeUser,
   composerText,
-  setComposerText,
   isShifted,
   setIsShifted,
   setIsSidebarVisible,
   setIsSidebar2Visible,
 }) => {
   const textareaRef = useRef(null);
+  const [textValue, setTextValue] = useState("");
 
   const [messages, setMessages] = useState([
     {
@@ -31,18 +31,21 @@ const Customerchat = ({
   ]);
 
   const handleSend = () => {
-    if (!composerText.trim()) return;
+    const inputValue = textareaRef.current.value;
+  
     setMessages((prev) => [
       ...prev,
       {
         type: "agent",
-        text: composerText.trim(),
+        text: inputValue.trim(), 
         time: "Now",
       },
     ]);
-    setComposerText("");
+  
+    textareaRef.current.value = ""; 
+    setTextValue("");
   };
-
+  
   const handleSidebarToggle = () => {
     if (window.innerWidth <= 1000) {
       setIsSidebarVisible(true);
@@ -138,7 +141,7 @@ const Customerchat = ({
           className={styles["chat-textarea"]}
           placeholder="Use ⌘K for shortcuts"
           value={composerText}
-          onChange={(e) => setComposerText(e.target.value)}
+          onChange={(e) => setTextValue(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
@@ -161,7 +164,7 @@ const Customerchat = ({
           </div>
 
           <button
-            className={`${styles["send-btn"]} ${composerText.trim() ? styles["send-btn-active"] : ""}`}
+            className={`${styles["send-btn"]} ${textValue ? styles["send-btn-active"] : ""}`}
             onClick={handleSend}
           >
             <span>Send</span>
