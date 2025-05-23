@@ -13,7 +13,7 @@ body,head{
     width:95.7vw;
     background-color: rgb(159, 164, 255);
     border-radius: 10px;
-    margin: 0.5rem 0rem 1rem 2.1rem;
+    margin: 0.5rem 0rem 1rem 1rem;
     display: flex;
     box-shadow: 1px 1px  30px rgb(71, 71, 255),0 0 30px rgb(62, 62, 255);
 }
