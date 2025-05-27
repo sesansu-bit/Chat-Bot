@@ -197,3 +197,11 @@
     margin-top: 0.5rem;
   }
 }
+
+@media (max-width: 735px) {
+  .close-icon {
+      display: block;
+      margin-left: auto;
+      margin-top: 0.5rem;
+    }
+}
