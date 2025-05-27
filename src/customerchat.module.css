@@ -285,7 +285,9 @@
   color: #fff;
   background-color: #000;
 }
-
+.icon-btn {
+  display: block;
+}
 /* Responsive Styles */
 @media (max-width: 1099px) {
   .customer-container {
@@ -294,6 +296,9 @@
     border-radius: 8px;
    
   }
+    .icon-btn {
+      display: block;
+    }
 
   .customer-message {
     margin-left: 0;
